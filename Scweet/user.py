@@ -108,8 +108,10 @@ def get_users_followers(users, env, verbose=1, headless=True, wait=2, limit=floa
     return followers
 
 
-def get_users_following(users, env, verbose=1, headless=True, wait=2, limit=float('inf'), file_path=None):
-    following = utils.get_users_follow(users, headless, env, "following", verbose, wait=wait, limit=limit)
+def get_users_following(users, env, verbose=1, headless=True, wait=2, limit=float('inf'), file_path=None,
+                        existing_driver=None, login=False, add_at_sign=True):
+    following = utils.get_users_follow(users, headless, env, "following", verbose, wait=wait, limit=limit,
+                                       existing_driver=existing_driver, login=login, add_at_sign=add_at_sign)
 
     if file_path == None:
         file_path = 'outputs/' + str(users[0]) + '_' + str(users[-1]) + '_' + 'following.json'
