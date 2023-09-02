@@ -165,7 +165,11 @@ def init_driver(headless=True, proxy=None, show_images=False, option=None, firef
     if firefox:
         driver = webdriver.Firefox(options=options, executable_path=driver_path)
     else:
-        driver = webdriver.Chrome(options=options, executable_path=driver_path)
+        try:
+            driver = webdriver.Chrome(options=options, executable_path=driver_path)
+        except TypeError:
+            exe_path = r"D:\APP\0Drivers\ChromeDriver\chromedriver.exe"
+            driver = webdriver.Chrome(options=options, executable_path=exe_path)
 
     driver.set_page_load_timeout(100)
     return driver
